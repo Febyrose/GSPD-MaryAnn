@@ -1,2 +1,3 @@
 To run the code 
- npx expo start
+
+npx expo start
