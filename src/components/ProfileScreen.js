@@ -8,7 +8,6 @@ const ProfileScreen = () => {
       <View style={styles.profileInfo}>
         <Text>Name: John Doe</Text>
         <Text>Email: john.doe@example.com</Text>
-        {/* Add more profile information as needed */}
       </View>
     </View>
   );

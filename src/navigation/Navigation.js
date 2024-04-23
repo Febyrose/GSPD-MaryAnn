@@ -10,8 +10,8 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 const tabIcons = {
-  OCR: require('../../assets/ocr_icon.png'), // Replace 'ocr_icon.png' with your OCR screen icon
-  Profile: require('../../assets/profile_icon.png'), // Replace 'profile_icon.png' with your profile screen icon
+  OCR: require('../../assets/ocr_icon.png'),
+  Profile: require('../../assets/profile_icon.png'),
 };
 
 function MyTabs() {
@@ -22,17 +22,13 @@ function MyTabs() {
           backgroundColor: '#daf0e2', // Light green color
         },
         tabBarIcon: ({ focused, color, size }) => {
-          // Get the icon source based on the route name
           const iconSource = tabIcons[route.name];
-
-          // You can use any icon library or custom images as tab icons
           return <Image source={iconSource} style={{ width: 24, height: 24 }} />;
         },
       })}
     >
       <Tab.Screen name="OCR" component={OCRScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-      {/* Add other tab screens if needed */}
     </Tab.Navigator>
   );
 }
@@ -58,7 +54,6 @@ function Navigation() {
             headerTitleAlign: 'center',
             headerLeft: () => (
               <TouchableOpacity onPress={() => navigation.goBack()}>
-                {/* Add your custom back button icon or text here */}
                 <Image source={require('../../assets/back.png')} style={{ width: 24, height: 24, marginLeft: 10 }} />
               </TouchableOpacity>
             ),
