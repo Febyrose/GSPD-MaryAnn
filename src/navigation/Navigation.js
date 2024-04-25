@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import OCRScreen from '../components/OCRScreen';
 import ProfileScreen from '../components/ProfileScreen';
+import ScannedDocScreen from '../components/ScannedDoc';
 import { Image, TouchableOpacity, Text, View } from 'react-native';
 
 const Stack = createStackNavigator();
@@ -12,6 +13,7 @@ const Tab = createBottomTabNavigator();
 const tabIcons = {
   OCR: require('../../assets/ocr_icon.png'),
   Profile: require('../../assets/profile_icon.png'),
+  History: require('../../assets/scanlogo.png'),
 };
 
 function MyTabs() {
@@ -28,6 +30,7 @@ function MyTabs() {
       })}
     >
       <Tab.Screen name="OCR" component={OCRScreen} />
+      <Tab.Screen name="History" component={ScannedDocScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
