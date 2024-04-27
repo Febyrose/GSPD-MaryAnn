@@ -23,7 +23,6 @@ const OCRScreen = ({ navigation }) => {
       console.error('Error picking image:', error);
     }
   };
-  
 
   const openCamera = async () => {
     try {
@@ -41,7 +40,12 @@ const OCRScreen = ({ navigation }) => {
       console.error('Error opening camera:', error);
     }
   };
-  
+
+  const handleDigitizeDocument = () => {
+    // Add logic to digitize the selected image
+    // This function will be triggered when the "Digitize Image" button is pressed
+    console.log('Digitizing image...');
+  };
 
   return (
     <View style={styles.container}>
@@ -64,11 +68,29 @@ const OCRScreen = ({ navigation }) => {
         ))}
       </View>
 
-      {selectedImage && (
-        <View style={styles.imageContainer}>
-          <Image source={{ uri: selectedImage }} style={styles.image} />
-        </View>
-      )}
+      {/* First Rectangular dotted box */}
+      <View style={[styles.dottedBox, styles.elevatedBox]}>
+      {!selectedImage ? (
+    <Text style={styles.placeholderText}>Selected Document For Digitization</Text>
+  ) : (
+    <Image source={{ uri: selectedImage }} style={styles.image} />
+  )}     
+        
+      </View>
+
+      {/* "Digitize Image" button */}
+      <TouchableOpacity style={styles.digitizeButton} onPress={handleDigitizeDocument}>
+        <Text style={styles.digitizeButtonText}>Digitize Document</Text>
+      </TouchableOpacity>
+
+      {/* Second Rectangular dotted box */}
+      <View style={[styles.dottedBox, styles.elevatedBox]}>
+      {!selectedImage ? (
+    <Text style={styles.placeholderText}>Processed Digital Document</Text>
+  ) : (
+    <Image source={{ uri: selectedImage }} style={styles.image} />
+  )}
+      </View>
     </View>
   );
 };
@@ -110,18 +132,41 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: '#333',
   },
-  imageContainer: {
-    borderWidth: 1,
-    borderColor: '#ccc',
+  dottedBox: {
+    borderWidth: 2,
     borderRadius: 10,
-    padding: 10,
-    marginBottom: 20,
+    borderStyle: 'dashed', // Use dashed border style
+    borderColor: '#999',
+    backgroundColor: '#f0f0f0', // Set background color for the first dotted box
+    width: '80%',
+    height: 200,
+    alignSelf: 'center',
+    marginVertical: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  elevatedBox: {
+    backgroundColor: '#fff', // Different background color for the elevated box
+    elevation: 20, // Increased elevation for the second dotted box
   },
   image: {
     width: '100%',
-    height: 200,
+    height: '100%',
     resizeMode: 'cover',
     borderRadius: 10,
+  },
+  digitizeButton: {
+    backgroundColor: '#0E46A3',
+    borderRadius: 10,
+    paddingVertical: 12,
+    paddingHorizontal: 24,
+    marginBottom: 5,
+    marginTop: 5,
+    alignSelf: 'center',
+  },
+  digitizeButtonText: {
+    color: '#fff',
+    fontSize: 14,
   },
 });
 
