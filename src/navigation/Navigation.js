@@ -2,8 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import { faCamera,faMagnifyingGlassChart, faUser, faHistory } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 import OCRScreen from '../components/OCRScreen';
 import ProfileScreen from '../components/ProfileScreen';
 import ScannedDocScreen from '../components/ScannedDoc';
@@ -26,13 +25,13 @@ function MyTabs() {
         tabBarIcon: ({ focused, color, size }) => {
           let iconColor = focused ? '#1E0342' : '#0E46A3'; // Dark grey with increased opacity for focused, faded dark grey for unfocused
           let icon = "";
-          // if (route.name === 'OCR') {
-          //   icon = <FontAwesomeIcon icon={faMagnifyingGlassChart} size={size} color={iconColor} />;
-          // } else if (route.name === 'Profile') {
-          //   icon = <FontAwesomeIcon icon={faUser} size={size} color={iconColor} />;
-          // } else if (route.name === 'History') {
-          //   icon = <FontAwesomeIcon icon={faHistory} size={size} color={iconColor} />;
-          // }
+          if (route.name === 'OCR') {
+            icon = <FontAwesome6 name='magnifying-glass-chart' size={size} color={iconColor} />;
+          } else if (route.name === 'Profile') {
+            icon = <FontAwesome6 name='person' size={size} color={iconColor} />;
+          } else if (route.name === 'History') {
+            icon = <FontAwesome6 name='history' size={size} color={iconColor} />;
+          }
           return icon;
         },
       })}

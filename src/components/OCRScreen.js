@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-// import { faFilePdf, faFileExcel, faFileImport } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 import handleImage from './OCRBackend';
 
 const OCRScreen = ({ navigation }) => {
@@ -61,17 +60,17 @@ const OCRScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.horizontalIconsContainer}>
         {[
-          { icon: "faFilePdf", label: 'Scan to PDF', action: openCamera },
-          { icon: "faFileExcel", label: 'Scan to Excel', action: openCamera },
-          { icon: "faFileImport", label: 'Import Files', action: pickImage },
-        ].map((item, index) => (
+          { icon: "file-pdf", label: 'Scan to PDF', action: openCamera },
+          { icon: "file-excel", label: 'Scan to Excel', action: openCamera },
+          { icon: "file-import", label: 'Import Files', action: pickImage },
+        ].map((item, index) => ( 
           <TouchableOpacity
             key={index}
             style={styles.iconButton}
             onPress={item.action}
           >
             <View style={styles.icon}>
-              {/* <FontAwesomeIcon icon={item.icon} size={30} color="#0E46A3" /> */}
+              <FontAwesome6 name={item.icon} size={24} color="black" />
             </View>
             <Text style={styles.iconLabel}>{item.label}</Text>
           </TouchableOpacity>
