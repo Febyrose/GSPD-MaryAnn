@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faFilePdf, faFileExcel, faFileImport } from '@fortawesome/free-solid-svg-icons';
+// import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+// import { faFilePdf, faFileExcel, faFileImport } from '@fortawesome/free-solid-svg-icons';
+import handleImage from './OCRBackend';
 
 const OCRScreen = ({ navigation }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [scannedText, setScannedText] = useState("");
 
   const pickImage = async () => {
     try {
@@ -16,8 +18,8 @@ const OCRScreen = ({ navigation }) => {
         quality: 1,
       });
   
-      if (!result.cancelled) {
-        setSelectedImage(result.uri);
+      if (!result.canceled) {
+        setSelectedImage(result.assets[0].uri);
       }
     } catch (error) {
       console.error('Error picking image:', error);
@@ -33,27 +35,35 @@ const OCRScreen = ({ navigation }) => {
         quality: 1,
       });
   
-      if (!result.cancelled) {
-        setSelectedImage(result.uri);
+      if (!result.canceled) {
+        setSelectedImage(result.assets[0].uri);
       }
     } catch (error) {
       console.error('Error opening camera:', error);
     }
   };
 
-  const handleDigitizeDocument = () => {
+  const handleDigitizeDocument = async () => {
+    if (selectedImage == null) {
+      console.log("No image selected to scan. Abort.");
+      return;
+    }
     // Add logic to digitize the selected image
     // This function will be triggered when the "Digitize Image" button is pressed
     console.log('Digitizing image...');
+    // results is an array of strings
+    results = await handleImage(selectedImage);
+    console.log('Received results: ', results);
+    setScannedText(results);
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.horizontalIconsContainer}>
         {[
-          { icon: faFilePdf, label: 'Scan to PDF', action: openCamera },
-          { icon: faFileExcel, label: 'Scan to Excel', action: openCamera },
-          { icon: faFileImport, label: 'Import Files', action: pickImage },
+          { icon: "faFilePdf", label: 'Scan to PDF', action: openCamera },
+          { icon: "faFileExcel", label: 'Scan to Excel', action: openCamera },
+          { icon: "faFileImport", label: 'Import Files', action: pickImage },
         ].map((item, index) => (
           <TouchableOpacity
             key={index}
@@ -61,7 +71,7 @@ const OCRScreen = ({ navigation }) => {
             onPress={item.action}
           >
             <View style={styles.icon}>
-              <FontAwesomeIcon icon={item.icon} size={30} color="#0E46A3" />
+              {/* <FontAwesomeIcon icon={item.icon} size={30} color="#0E46A3" /> */}
             </View>
             <Text style={styles.iconLabel}>{item.label}</Text>
           </TouchableOpacity>
