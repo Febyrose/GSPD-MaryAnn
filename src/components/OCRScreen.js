@@ -45,6 +45,7 @@ const OCRScreen = ({ navigation }) => {
   const handleDigitizeDocument = async () => {
     if (selectedImage == null) {
       console.log("No image selected to scan. Abort.");
+      setScannedText("Select image and press button again.");
       return;
     }
     // Add logic to digitize the selected image
@@ -94,10 +95,10 @@ const OCRScreen = ({ navigation }) => {
 
       {/* Second Rectangular dotted box */}
       <View style={[styles.dottedBox, styles.elevatedBox]}>
-      {!selectedImage ? (
+      {!scannedText ? (
     <Text style={styles.placeholderText}>Processed Digital Document</Text>
   ) : (
-    <Image source={{ uri: selectedImage }} style={styles.image} />
+    <Text style={styles.placeholderText}>{scannedText}</Text>
   )}
       </View>
     </View>
