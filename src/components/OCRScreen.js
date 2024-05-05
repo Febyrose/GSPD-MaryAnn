@@ -98,7 +98,10 @@ const OCRScreen = ({ navigation }) => {
       {!scannedText ? (
     <Text style={styles.placeholderText}>Processed Digital Document</Text>
   ) : (
-    <Text style={styles.placeholderText}>{scannedText}</Text>
+    <Text style={styles.placeholderText}>
+      {scannedText.map((block) => {
+        return block.text + '\n';
+      })}</Text>
   )}
       </View>
     </View>
