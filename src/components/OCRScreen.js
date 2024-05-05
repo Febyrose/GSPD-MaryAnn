@@ -100,7 +100,7 @@ const OCRScreen = ({ navigation }) => {
   ) : (
     <Text style={styles.placeholderText}>
       {scannedText.map((block) => {
-        return block.text + '\n';
+        return block + '\n';
       })}</Text>
   )}
       </View>
