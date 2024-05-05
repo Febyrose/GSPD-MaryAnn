@@ -90,14 +90,14 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   button: {
-    backgroundColor: '#0E46A3',
+    backgroundColor: '#CFEEEF',
     paddingVertical: 10,
     paddingHorizontal: 20,
     borderRadius: 5,
     marginBottom: 10,
   },
   buttonText: {
-    color: '#FFFFFF',
+    color: '#212121',
     fontSize: 16,
     fontWeight: 'bold',
   },

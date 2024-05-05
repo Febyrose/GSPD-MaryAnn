@@ -71,7 +71,7 @@ const OCRScreen = ({ navigation }) => {
             onPress={item.action}
           >
             <View style={styles.icon}>
-              <FontAwesome6 name={item.icon} size={24} color="black" />
+              <FontAwesome6 name={item.icon} size={24} color="#212121" />
             </View>
             <Text style={styles.iconLabel}>{item.label}</Text>
           </TouchableOpacity>
@@ -111,7 +111,7 @@ const OCRScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#F0F6F7',
   },
   horizontalIconsContainer: {
     flexDirection: 'row',
@@ -145,12 +145,12 @@ const styles = StyleSheet.create({
     marginTop: 5,
     color: '#333',
   },
-  dottedBox: {
+  dottedBox: {  
     borderWidth: 2,
     borderRadius: 10,
     borderStyle: 'dashed', // Use dashed border style
     borderColor: '#999',
-    backgroundColor: '#f0f0f0', // Set background color for the first dotted box
+    backgroundColor: '#f2f2f2', // Set background color for the first dotted box
     width: '80%',
     height: 200,
     alignSelf: 'center',
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   digitizeButton: {
-    backgroundColor: '#0E46A3',
+    backgroundColor: '#CFEEEF',
     borderRadius: 10,
     paddingVertical: 12,
     paddingHorizontal: 24,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   digitizeButtonText: {
-    color: '#fff',
+    color: 'black',
     fontSize: 14,
   },
 });
