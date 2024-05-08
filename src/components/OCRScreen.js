@@ -45,7 +45,7 @@ const OCRScreen = ({ navigation }) => {
   const handleDigitizeDocument = async () => {
     if (selectedImage == null) {
       console.log("No image selected to scan. Abort.");
-      setScannedText("Select image and press button again.");
+      setScannedText(["Select image and press button again."]);
       return;
     }
     // Add logic to digitize the selected image
