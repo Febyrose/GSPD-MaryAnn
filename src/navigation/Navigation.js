@@ -16,14 +16,14 @@ function MyTabs() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarStyle: {
-          backgroundColor: '#5AC8FA', // Light Blue
+          backgroundColor: '#68AAAC', // D2V Blue
         },
         tabBarLabelStyle: {
           fontSize: 12,
-          color: '#333333', // Dark grey color for tab labels
+          color: '#666666', // Dark grey color for tab labels
         },
         tabBarIcon: ({ focused, color, size }) => {
-          let iconColor = focused ? '#1E0342' : '#0E46A3'; // Dark grey with increased opacity for focused, faded dark grey for unfocused
+          let iconColor = focused ? '#CFEEEF' : '#376473'; // Dark grey with increased opacity for focused, faded dark grey for unfocused
           let icon = "";
           if (route.name === 'OCR') {
             icon = <FontAwesome6 name='magnifying-glass-chart' size={size} color={iconColor} />;
@@ -53,13 +53,13 @@ function Navigation() {
           component={MyTabs}
           options={({ navigation }) => ({
             headerStyle: {
-              backgroundColor: '#5AC8FA', // Light Blue
+              backgroundColor: '#68AAAC', // Light Blue
             },
             headerTintColor: '#FFFFFF', // White color for text/icons
             headerTitle: () => (
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                 <Image source={require('../../assets/logo.png')} style={{ width: 32, height: 32, marginLeft: 10 }} />
-                <Text style={{ marginLeft: 10, fontSize: 22, fontWeight: 'bold', color: '#000000' }}>Medical OCR</Text>
+                <Text style={{ marginLeft: 10, fontSize: 22, fontWeight: 'bold', color: '#212121' }}>Medical OCR</Text>
               </View>
             ),
             headerTitleAlign: 'center',
