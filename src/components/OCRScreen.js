@@ -61,8 +61,8 @@ const OCRScreen = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.horizontalIconsContainer}>
         {[
-          { icon: "file-pdf", label: 'Scan to PDF', action: openCamera },
-          { icon: "file-excel", label: 'Scan to Excel', action: openCamera },
+          { icon: "camera-retro", label: 'Scan', action: openCamera },
+          // { icon: "file-excel", label: 'Scan to Excel', action: openCamera },
           { icon: "file-import", label: 'Import Files', action: pickImage },
         ].map((item, index) => ( 
           <TouchableOpacity
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
   },
   horizontalIconsContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     paddingHorizontal: 20,
     marginTop: 20,
   },
@@ -180,6 +180,7 @@ const styles = StyleSheet.create({
   digitizeButtonText: {
     color: 'black',
     fontSize: 14,
+    fontWeight: 'bold',
   },
 });
 

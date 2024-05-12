@@ -30,7 +30,7 @@ function MyTabs() {
           } else if (route.name === 'Profile') {
             icon = <FontAwesome6 name='person' size={size} color={iconColor} />;
           } else if (route.name === 'History') {
-            icon = <FontAwesome6 name='history' size={size} color={iconColor} />;
+            icon = <FontAwesome6 name='book' size={size} color={iconColor} />;
           }
           return icon;
         },
@@ -58,8 +58,8 @@ function Navigation() {
             headerTintColor: '#FFFFFF', // White color for text/icons
             headerTitle: () => (
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <Image source={require('../../assets/logo.png')} style={{ width: 32, height: 32, marginLeft: 10 }} />
-                <Text style={{ marginLeft: 10, fontSize: 22, fontWeight: 'bold', color: '#212121' }}>Medical OCR</Text>
+                {/* <Image source={require('../../assets/logo.png')} style={{ width: 32, height: 32, marginLeft: 10 }} /> */}
+                <Text style={{ marginLeft: 10, fontSize: 22, fontWeight: 'bold', color: '#212121' }}>MedScan</Text>
               </View>
             ),
             headerTitleAlign: 'center',
