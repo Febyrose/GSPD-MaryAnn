@@ -53,8 +53,12 @@ const OCRScreen = ({ navigation }) => {
     console.log('Digitizing image...');
     // results is an array of strings
     results = await handleImage(selectedImage);
-    console.log('Received results: ', results);
-    setScannedText(results);
+    preparedResults = []
+    for (const [key, value] of Object.entries(results)) {
+      preparedResults.push(key + ": " + value);
+      console.log(key + ": " + value);
+    }
+    setScannedText(preparedResults);
   };
 
   return (
@@ -99,8 +103,8 @@ const OCRScreen = ({ navigation }) => {
     <Text style={styles.placeholderText}>Processed Digital Document</Text>
   ) : (
     <Text style={styles.placeholderText}>
-      {scannedText.map((block) => {
-        return block + '\n';
+      {scannedText.map((text) => {
+        return text + '\n';
       })}</Text>
   )}
       </View>

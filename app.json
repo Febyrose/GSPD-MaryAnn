@@ -19,7 +19,8 @@
       "infoPlist": {
         "NSCameraUsageDescription": "This app requires access to your camera to capture images.",
         "NSPhotoLibraryUsageDescription": "This app requires access to your photo library to select images."
-      }
+      },
+      "bundleIdentifier": "com.kemist2301.ocr"
     },
     "android": {
       "adaptiveIcon": {
