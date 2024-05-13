@@ -4,10 +4,10 @@ import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 const ScannedDocScreen = () => {
   // Sample data for scanned documents
   const scannedDocuments = [
-    { id: 1, name: 'Document 1', date: '2024-04-20', thumbnail: require('../../assets/medical_ocr.png') },
-    { id: 2, name: 'Document 2', date: '2024-04-22', thumbnail: require('../../assets/medical_ocr.png') },
-    { id: 3, name: 'Document 3', date: '2024-04-23', thumbnail: require('../../assets/medical_ocr.png') },
-    { id: 4, name: 'Document 4', date: '2024-04-24', thumbnail: require('../../assets/medical_ocr.png') },
+    { id: 1, name: 'Document 1', date: '2024-04-20', thumbnail: require('../../assets/document-medicine.svg') },
+    { id: 2, name: 'Document 2', date: '2024-04-22', thumbnail: require('../../assets/document-medicine.svg') },
+    { id: 3, name: 'Document 3', date: '2024-04-23', thumbnail: require('../../assets/document-medicine.svg') },
+    { id: 4, name: 'Document 4', date: '2024-04-24', thumbnail: require('../../assets/document-medicine.svg') },
     // Add more documents as needed
   ];
 
