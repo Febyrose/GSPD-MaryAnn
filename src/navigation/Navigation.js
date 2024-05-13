@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome6 } from '@expo/vector-icons';
 import OCRScreen from '../components/OCRScreen';
 import ProfileScreen from '../components/ProfileScreen';
+import EditProfileScreen from '../components/EditProfileScreen';
 import ScannedDocScreen from '../components/ScannedDoc';
 import { Image, TouchableOpacity, Text, View } from 'react-native';
 
@@ -39,7 +40,6 @@ function MyTabs() {
       <Tab.Screen name="OCR" component={OCRScreen} />
       <Tab.Screen name="History" component={ScannedDocScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-  
     </Tab.Navigator>
   );
 }
@@ -58,7 +58,6 @@ function Navigation() {
             headerTintColor: '#FFFFFF', // White color for text/icons
             headerTitle: () => (
               <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                {/* <Image source={require('../../assets/logo.png')} style={{ width: 32, height: 32, marginLeft: 10 }} /> */}
                 <Text style={{ marginLeft: 10, fontSize: 22, fontWeight: 'bold', color: '#212121' }}>MedScan</Text>
               </View>
             ),
@@ -70,6 +69,7 @@ function Navigation() {
             ),
           })}
         />
+        <Stack.Screen name="EditProfile" component={EditProfileScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

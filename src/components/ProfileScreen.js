@@ -1,52 +1,86 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { FontAwesome5 } from '@expo/vector-icons';
 
-const ProfileScreen = () => {
-  // Function to handle the press event for the Add Qualification button
-  const handleAddQualification = () => {
-    // Implement your logic here
-    console.log('Add Qualification button pressed');
-  };
+const ProfileScreen = ({ route }) => {
+  const navigation = useNavigation();
+  const [profile, setProfile] = useState({
+    name: '',
+    email: '',
+    phoneNumber: '',
+    qualifications: '',
+    profileImage: null,
+  });
 
-  // Function to handle the press event for the Edit Profile button
+  useEffect(() => {
+    if (route.params) {
+      setProfile({
+        name: route.params.name || '',
+        email: route.params.email || '',
+        phoneNumber: route.params.phoneNumber || '',
+        qualifications: route.params.qualifications || '',
+        profileImage: route.params.profileImage || null,
+      });
+    }
+  }, [route.params]);
+
   const handleEditProfile = () => {
-    // Implement your logic here
-    console.log('Edit Profile button pressed');
+    navigation.navigate('EditProfile', { ...profile });
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
-        <Image
-          source={require('../../assets/profile_icon.png')} // Replace with actual profile photo
-          style={styles.profilePhoto}
-        />
-        <View style={styles.profileInfo}>
-          <Text style={styles.name}>Dr. John Doe</Text>
-          <Text style={styles.email}>john.doe@gamil.com</Text>
-          <Text style={styles.number}>Phone: +46735671835</Text>
-          {/* Add other profile information here */}
-          <Text style={styles.qualifications}>Qualifications: MBBS, MD</Text>
-          {/* Add more qualifications or information */}
+        <ProfileImage profileImage={profile.profileImage} />
+        <ProfileInfo profile={profile} />
+        <View style={styles.buttonContainer}>
+          <EditButton onPress={handleEditProfile} />
         </View>
-      </View>
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={handleEditProfile}>
-          <Text style={styles.buttonText}>Edit Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={handleAddQualification}>
-          <Text style={styles.buttonText}>Add Qualification</Text>
-        </TouchableOpacity>
       </View>
     </View>
   );
 };
+
+const ProfileInfo = ({ profile }) => (
+  <View style={styles.profileInfo}>
+    <Text style={styles.name}>{profile.name || 'Dr. John Doe'}</Text>
+    <InfoRow icon="envelope" text={profile.email || 'john.doe@gmail.com'} />
+    <InfoRow icon="phone" text={profile.phoneNumber || '+46735671835'} />
+    <InfoRow icon="user-graduate" text={profile.qualifications || 'MBBS, MD'} />
+  </View>
+);
+
+const ProfileImage = ({ profileImage }) => (
+  <Image
+    source={profileImage ? { uri: `data:image/jpeg;base64,${profileImage}` } : require('../../assets/profile_icon.png')}
+    style={styles.profilePhoto}
+  />
+);
+
+const InfoRow = ({ icon, text }) => (
+  <View style={styles.infoRow}>
+    <View style={styles.iconColumn}>
+      <FontAwesome5 name={icon} size={16} color="#666" style={styles.icon} />
+    </View>
+    <Text style={styles.infoText}>{text}</Text>
+  </View>
+);
+
+const EditButton = ({ onPress }) => (
+  <TouchableOpacity style={styles.button} onPress={onPress}>
+    <Text style={styles.buttonText}>Edit Profile</Text>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#F0F6F7',
+    padding: 20,
+    
   },
   profileContainer: {
     alignItems: 'center',
@@ -55,6 +89,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 20,
     marginBottom: 20,
+    width: '80%',
+    backgroundColor: '#fff',
   },
   profilePhoto: {
     width: 150,
@@ -68,23 +104,25 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginBottom: 5,
+    marginBottom: 10,
   },
-  email: {
+  infoRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 15,
+  },
+  iconColumn: {
+    width: 20, // Set a fixed width for the icon column
+  },
+  icon: {
+    marginRight: 10,
+  },
+  infoText: {
     fontSize: 16,
     color: '#666',
-    marginBottom: 10,
-  },
-  number: {
-    fontSize: 14,
-    color: '#777',
-    marginBottom: 10,
-  },
-  qualifications: {
-    fontSize: 16,
+    flex: 1, // Allow text to take remaining space
   },
   buttonContainer: {
-    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
