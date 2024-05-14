@@ -8,6 +8,7 @@ import ProfileScreen from '../components/ProfileScreen';
 import EditProfileScreen from '../components/EditProfileScreen';
 import ScannedDocScreen from '../components/ScannedDoc';
 import { Image, TouchableOpacity, Text, View } from 'react-native';
+import ResultScreen from '../components/ResultScreen';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -70,6 +71,7 @@ function Navigation() {
           })}
         />
         <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        <Stack.Screen name="ResultScreen" component={ResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -3,8 +3,10 @@ import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { FontAwesome6 } from '@expo/vector-icons';
 import handleImage from './OCRBackend';
+import { useNavigation } from '@react-navigation/native';
 
-const OCRScreen = ({ navigation }) => {
+const OCRScreen = () => {
+  const navigation = useNavigation();
   const [selectedImage, setSelectedImage] = useState(null);
   const [scannedText, setScannedText] = useState("");
 
@@ -48,9 +50,10 @@ const OCRScreen = ({ navigation }) => {
       setScannedText(["Select image and press button again."]);
       return;
     }
+    navigation.navigate('ResultScreen', { scannedText });
     // Add logic to digitize the selected image
     // This function will be triggered when the "Digitize Image" button is pressed
-    console.log('Digitizing image...');
+ /*   console.log('Digitizing image...');
     // results is an array of strings
     results = await handleImage(selectedImage);
     preparedResults = []
@@ -58,7 +61,7 @@ const OCRScreen = ({ navigation }) => {
       preparedResults.push(key + ": " + value);
       console.log(key + ": " + value);
     }
-    setScannedText(preparedResults);
+    setScannedText(preparedResults);*/
   };
 
   return (
@@ -96,8 +99,7 @@ const OCRScreen = ({ navigation }) => {
       <TouchableOpacity style={styles.digitizeButton} onPress={handleDigitizeDocument}>
         <Text style={styles.digitizeButtonText}>Digitize Document</Text>
       </TouchableOpacity>
-
-      {/* Second Rectangular dotted box */}
+{/*
       <View style={[styles.dottedBox, styles.elevatedBox]}>
       {!scannedText ? (
     <Text style={styles.placeholderText}>Processed Digital Document</Text>
@@ -107,7 +109,7 @@ const OCRScreen = ({ navigation }) => {
         return text + '\n';
       })}</Text>
   )}
-      </View>
+      </View>*/}
     </View>
   );
 };
@@ -155,8 +157,8 @@ const styles = StyleSheet.create({
     borderStyle: 'dashed', // Use dashed border style
     borderColor: '#999',
     backgroundColor: '#f2f2f2', // Set background color for the first dotted box
-    width: '80%',
-    height: 200,
+    width: '85%',
+    height: 350,
     alignSelf: 'center',
     marginVertical: 20,
     justifyContent: 'center',
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     marginBottom: 5,
-    marginTop: 5,
+    marginTop: 10,
     alignSelf: 'center',
   },
   digitizeButtonText: {
