@@ -4,22 +4,22 @@ import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity } from 
 const ResultScreen = ({ route }) => {
   // Extract scanned text from route parameters
   const { scannedText } = route.params;
+  console.log(scannedText);
 
   // Initialize state variables for editable fields
-  const [patientName, setPatientName] = useState(scannedText.patientName || '');
-  const [age, setAge] = useState(scannedText.age || '');
-  const [sex, setSex] = useState(scannedText.sex || '');
-  const [address, setAddress] = useState(scannedText.address || '');
-  const [dateOfAdmission, setDateOfAdmission] = useState(scannedText.dateOfAdmission || '');
-  const [cardNumber, setCardNumber] = useState(scannedText.cardNumber || '');
-  const [diagnosis, setDiagnosis] = useState(scannedText.diagnosis || '');
+  const [patientName, setPatientName] = useState(scannedText["Patient Name"] || '');
+  const [age, setAge] = useState(scannedText["Age"] || '');
+  const [sex, setSex] = useState(scannedText["Sex"] || '');
+  const [address, setAddress] = useState(scannedText["Address"] || '');
+  const [dateOfAdmission, setDateOfAdmission] = useState(scannedText["Date of Admission"] || '');
+  const [cardNumber, setCardNumber] = useState(scannedText["Card Number"] || '');
+  const [diagnosis, setDiagnosis] = useState(scannedText["Diagnosis"] || '');
 
   // Sample tabular data
-  const tableData = [
-    { serialNumber: '1', date: '2024-05-15', ketamine: 'Yes', propofol: 'No', diazepam: 'Yes', bp: '140/90',pr:135, spo:100, temp:0, timeOfInduction: '10:00 AM', durationofProcedure:15, durationofAnesthesia:12, timeRecovery:4.5, nameAnesthetist:"Dolor Sit" },
-    { serialNumber: '2', date: '2024-05-16', ketamine: 'No', propofol: 'Yes', diazepam: 'No', bp: '140/90',pr:135, spo:100, temp:0, timeOfInduction: '11:30 AM', durationofProcedure:15, durationofAnesthesia:11, timeRecovery:5.0, nameAnesthetist:"Consectetur" },
-    // Add more rows as needed
-  ];
+  const tableData = [];
+  for (let i = 1; i <= 20; i++) {
+    tableData.push({ serialNumber: i, date: scannedText["Row"+i+"Date"] || '', ketamine: scannedText["Row"+i+"Ketamine"] || '', propofol: scannedText["Row"+i+"Propofol"] || '', diazepam: scannedText["Row"+i+"Diazepam"] || '', bp: scannedText["Row"+i+"BP"] || '', pr: scannedText["Row"+i+"PR"] || '', spo: scannedText["Row"+i+"SPO2"] || '', temp: scannedText["Row"+i+"Temp"] || '', timeOfInduction: scannedText["Row"+i+"Time of Induction"] || '', durationofProcedure: scannedText["Row"+i+"Duration of Procedure"] || '', durationofAnesthesia: scannedText["Row"+i+"Duration of Anesthesia"] || '', timeRecovery: scannedText["Row"+i+"Time of Recovery"] || '', nameAnesthetist: scannedText["Row"+i+"Name of Anesthetist"] || ''});
+  }
 
   return (
     <ScrollView>

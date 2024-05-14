@@ -50,12 +50,14 @@ const OCRScreen = () => {
       setScannedText(["Select image and press button again."]);
       return;
     }
+    const results = await handleImage(selectedImage);
+    setScannedText(results);
     navigation.navigate('ResultScreen', { scannedText });
     // Add logic to digitize the selected image
     // This function will be triggered when the "Digitize Image" button is pressed
  /*   console.log('Digitizing image...');
     // results is an array of strings
-    results = await handleImage(selectedImage);
+    
     preparedResults = []
     for (const [key, value] of Object.entries(results)) {
       preparedResults.push(key + ": " + value);
