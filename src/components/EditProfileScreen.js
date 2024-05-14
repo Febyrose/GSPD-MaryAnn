@@ -55,7 +55,7 @@ const EditProfileScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
-        <TouchableOpacity style={styles.imagePicker} onPress={pickImage}>
+        {/* <TouchableOpacity style={styles.imagePicker} onPress={pickImage}>
           {selectedImage? (
             <Image source={{ uri: selectedImage }} style={styles.profilePhoto} />
           ) : (
@@ -64,7 +64,7 @@ const EditProfileScreen = () => {
               <Text style={styles.placeholderText}>Pick Photo</Text>
             </View>
           )}
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.formContainer}>
           <View style={styles.inputContainer}>
             <FontAwesome5 name="user" size={16} color="#666" style={styles.inputIcon} />

@@ -70,7 +70,7 @@ function Navigation() {
             ),
           })}
         />
-        <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        <Stack.Screen name="Edit Profile" component={EditProfileScreen} />
         <Stack.Screen name="ResultScreen" component={ResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>

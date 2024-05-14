@@ -26,13 +26,13 @@ const ProfileScreen = ({ route }) => {
   }, [route.params]);
 
   const handleEditProfile = () => {
-    navigation.navigate('EditProfile', { ...profile });
+    navigation.navigate('Edit Profile', { ...profile });
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.profileContainer}>
-        <ProfileImage profileImage={profile.profileImage} />
+        {/* <ProfileImage profileImage={profile.profileImage} /> */}
         <ProfileInfo profile={profile} />
         <View style={styles.buttonContainer}>
           <EditButton onPress={handleEditProfile} />
@@ -44,10 +44,10 @@ const ProfileScreen = ({ route }) => {
 
 const ProfileInfo = ({ profile }) => (
   <View style={styles.profileInfo}>
-    <Text style={styles.name}>{profile.name || 'Dr. John Doe'}</Text>
-    <InfoRow icon="envelope" text={profile.email || 'john.doe@gmail.com'} />
-    <InfoRow icon="phone" text={profile.phoneNumber || '+46735671835'} />
-    <InfoRow icon="user-graduate" text={profile.qualifications || 'MBBS, MD'} />
+    <Text style={styles.name}>{profile.name || 'New User'}</Text>
+    <InfoRow icon="envelope" text={profile.email || 'Add Email'} />
+    <InfoRow icon="phone" text={profile.phoneNumber || 'Add Phone Number'} />
+    <InfoRow icon="user-graduate" text={profile.qualifications || 'Add Qualifications'} />
   </View>
 );
 
