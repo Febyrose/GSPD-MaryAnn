@@ -1,15 +1,44 @@
-import React from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import documentThumbnail from '../../assets/document-medicine.svg'; 
+import { useFocusEffect } from '@react-navigation/native';
+
 
 const ScannedDocScreen = () => {
-  // Sample data for scanned documents
-  const scannedDocuments = [
-    { id: 1, name: 'Document 1', date: '2024-04-20', thumbnail: require('../../assets/document-medicine.svg') },
-    { id: 2, name: 'Document 2', date: '2024-04-22', thumbnail: require('../../assets/document-medicine.svg') },
-    { id: 3, name: 'Document 3', date: '2024-04-23', thumbnail: require('../../assets/document-medicine.svg') },
-    { id: 4, name: 'Document 4', date: '2024-04-24', thumbnail: require('../../assets/document-medicine.svg') },
-    // Add more documents as needed
-  ];
+
+  const [scannedDocuments, setScannedDocuments] = useState([]);
+  const STORAGE_KEY = 'scannedDocuments';
+
+  useFocusEffect(
+    React.useCallback(() => {
+      const loadDocuments = async () => {
+        try {
+          const storedData = await AsyncStorage.getItem('scannedDocuments');
+          console.log('Stored Data:', storedData);
+  
+          const storedDocuments = await AsyncStorage.getItem('scannedDocuments');
+          console.log(storedDocuments)
+          if (storedDocuments) {
+            setScannedDocuments(JSON.parse(storedDocuments));
+          } else {
+            const defaultDocuments = [
+              { id: 1, name: 'Document 12s', date: '2024-04-20', thumbnail: documentThumbnail },
+              { id: 2, name: 'Document 23', date: '2024-04-22', thumbnail: documentThumbnail },
+              { id: 3, name: 'Document 34', date: '2024-04-23', thumbnail: documentThumbnail },
+              { id: 4, name: 'Document 46121', date: '2024-04-24', thumbnail: documentThumbnail },
+            ];
+            setScannedDocuments(defaultDocuments);
+            await AsyncStorage.setItem('scannedDocuments', JSON.stringify(defaultDocuments));
+          }
+        } catch (e) {
+          console.error('Failed to load documents from storage', e);
+        }
+      };
+  
+      loadDocuments();
+    }, [])
+  );
 
   // Render item for GridView
   const renderGridItem = (item) => (

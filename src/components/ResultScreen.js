@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 const ResultScreen = ({ route }) => {
   // Extract scanned text from route parameters
@@ -14,6 +16,33 @@ const ResultScreen = ({ route }) => {
   const [dateOfAdmission, setDateOfAdmission] = useState(scannedText["Date of Admission"] || '');
   const [cardNumber, setCardNumber] = useState(scannedText["Card Number"] || '');
   const [diagnosis, setDiagnosis] = useState(scannedText["Diagnosis"] || '');
+  const STORAGE_KEY = 'scannedDocuments';
+  const navigation = useNavigation();
+
+
+  const generateUniqueNumber = () => {
+    const timestampInMilliseconds = new Date().getTime();
+    return timestampInMilliseconds;
+  };
+  
+
+ const saveScannedDocuments = async () => {
+    console.log("Saving...")
+    try {
+      const asd = { id: generateUniqueNumber(), name: patientName, date: new Date(), thumbnail: require('../../assets/document-medicine.svg') };
+      const prevDocumentsJson = await AsyncStorage.getItem(STORAGE_KEY);
+      const prevDocuments = JSON.parse(prevDocumentsJson)
+      //console.log('prev'+prevDocuments);
+      const newDocuments = [...prevDocuments, asd];
+      //console.log('new'+newDocuments);
+      await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(newDocuments));
+      navigation.navigate('History');
+    } catch (e) {
+      console.error('Failed to save documents to storage', e);
+
+    }
+    console.log("Data saved");
+  };
 
   // Sample tabular data
   const tableData = [];
@@ -158,7 +187,7 @@ const ResultScreen = ({ route }) => {
       </ScrollView>
 
       {/* Save button */}
-      <TouchableOpacity style={styles.saveButton} onPress={() => console.log("Data saved")}>
+      <TouchableOpacity style={styles.saveButton} onPress={() => saveScannedDocuments()}>
         <Text style={styles.saveButtonText}>Save</Text>
       </TouchableOpacity>
     </ScrollView>
